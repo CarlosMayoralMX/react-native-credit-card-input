@@ -37,10 +37,10 @@ const s = StyleSheet.create({
     color: "rgba(255, 255, 255, 1)",
   },
   number: {
-    fontSize: 21,
+    fontSize: 15,
     position: "absolute",
-    top: 95,
-    left: 28,
+    bottom: 15,
+    left: 20,
   },
   name: {
     fontSize: 16,
@@ -92,12 +92,14 @@ export default class CardView extends Component {
     imageFront: PropTypes.number,
     imageBack: PropTypes.number,
     customIcons: PropTypes.object,
+    requiresExpiry:PropTypes.bool,
+    showBrand:PropTypes.bool,
   };
 
   static defaultProps = {
     name: "",
     placeholder: {
-      number: "••••-••••-••••-••••",
+      number: "•••• •••• •••• ••••",
       name: "FULL NAME",
       expiry: "••/••",
       cvc: "•••",
@@ -112,7 +114,7 @@ export default class CardView extends Component {
   render() {
     const { focused,
       brand, name, number, expiry, cvc, customIcons,
-      placeholder, imageFront, imageBack, scale, fontFamily } = this.props;
+      placeholder, imageFront, imageBack, scale, fontFamily, requiresExpiry, showBrand} = this.props;
 
     const Icons = { ...defaultIcons, ...customIcons };
     const isAmex = brand === "american-express";
@@ -135,8 +137,8 @@ export default class CardView extends Component {
           flip={shouldFlip}>
           <ImageBackground style={[BASE_SIZE, s.cardFace, transform]}
             source={imageFront}>
-              <Image style={[s.icon]}
-                source={Icons[brand]} />
+              {showBrand && <Image style={[s.icon]}
+                source={Icons[brand]} />}
               <Text style={[s.baseText, { fontFamily }, s.number, !number && s.placeholder, focused === "number" && s.focused]}>
                 { !number ? placeholder.number : number }
               </Text>
@@ -144,12 +146,13 @@ export default class CardView extends Component {
                 numberOfLines={1}>
                 { !name ? placeholder.name : name.toUpperCase() }
               </Text>
-              <Text style={[s.baseText, { fontFamily }, s.expiryLabel, s.placeholder, focused === "expiry" && s.focused]}>
+             { requiresExpiry &&
+             <Text style={[s.baseText, { fontFamily }, s.expiryLabel, s.placeholder, focused === "expiry" && s.focused]}>
                 MONTH/YEAR
-              </Text>
+              </Text> &&
               <Text style={[s.baseText, { fontFamily }, s.expiry, !expiry && s.placeholder, focused === "expiry" && s.focused]}>
                 { !expiry ? placeholder.expiry : expiry }
-              </Text>
+              </Text> }
               { isAmex &&
                   <Text style={[s.baseText, { fontFamily }, s.amexCVC, !cvc && s.placeholder, focused === "cvc" && s.focused]}>
                     { !cvc ? placeholder.cvc : cvc }
