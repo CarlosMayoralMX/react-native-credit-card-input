@@ -11,6 +11,8 @@ import ReactNative, {
   ViewPropTypes,
 } from "react-native";
 
+import CCAcceptedBins from "./CCAcceptedBins"
+
 import CreditCard from "./CardView";
 import CCInput from "./CCInput";
 import { InjectedProps } from "./connectToState";
@@ -140,13 +142,14 @@ export default class CreditCardInput extends Component {
   };
 
   render() {
+ 
     const {
       cardImageFront, cardImageBack, inputContainerStyle,
       values: { number, expiry, cvc, name, type }, focused,
       allowScroll, requiresName, requiresCVC, requiresPostalCode,
-      cardScale, cardFontFamily, cardBrandIcons, requiresExpiry, showBrand
+      cardScale, cardFontFamily, cardBrandIcons, requiresExpiry, showBrand, acceptedBins
     } = this.props;
-
+    console.log(acceptedBins)
     return (
       <View style={s.container}>
         <CreditCard focused={focused}
@@ -161,7 +164,8 @@ export default class CreditCardInput extends Component {
           expiry={expiry}
           cvc={cvc}
           requiresExpiry={requiresExpiry} 
-          showBrand= {showBrand}/>
+          showBrand= {showBrand}
+          acceptedBins={acceptedBins}/>
         <ScrollView ref="Form"
           horizontal
           keyboardShouldPersistTaps="always"
