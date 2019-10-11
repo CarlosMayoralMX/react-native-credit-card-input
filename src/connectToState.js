@@ -83,21 +83,21 @@ export default function connectToState(CreditCardInput) {
     };
 
     _focusPreviousField = field => {
-      const displayedFields = this._displayedFields();
+   /*   const displayedFields = this._displayedFields();
       const fieldIndex = displayedFields.indexOf(field);
       const previousField = displayedFields[fieldIndex - 1];
-      if (previousField) this.focus(previousField);
+      if (previousField) this.focus(previousField);*/
     };
 
     _focusNextField = field => {
-      if (field === "name") return;
+      /*if (field === "name") return;
       // Should not focus to the next field after name (e.g. when requiresName & requiresPostalCode are true
       // because we can't determine if the user has completed their name or not)
 
       const displayedFields = this._displayedFields();
       const fieldIndex = displayedFields.indexOf(field);
       const nextField = displayedFields[fieldIndex + 1];
-      if (nextField) this.focus(nextField);
+      if (nextField) this.focus(nextField);*/
     };
 
     _change = (field, value) => {
