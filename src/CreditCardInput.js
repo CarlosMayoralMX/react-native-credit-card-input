@@ -77,8 +77,8 @@ export default class CreditCardInput extends Component {
       postalCode: "POSTAL CODE",
     },
     placeholders: {
-      name: "Full Name",
-      number: "1234 5678 1234 5678",
+      name: "Full Named",
+      number: "1234 5678 1234 0000",
       expiry: "MM/YY",
       cvc: "CVC",
       postalCode: "34567",
@@ -96,7 +96,7 @@ export default class CreditCardInput extends Component {
 
   componentDidMount = () => this._focus(this.props.focused);
 
-  componentWillReceiveProps = newProps => {
+  UNSAFE_componentWillReceiveProps = newProps => {
     if (this.props.focused !== newProps.focused) this._focus(newProps.focused);
   };
 
@@ -144,7 +144,7 @@ export default class CreditCardInput extends Component {
       cardImageFront, cardImageBack, inputContainerStyle,
       values: { number, expiry, cvc, name, type }, focused,
       allowScroll, requiresName, requiresCVC, requiresPostalCode,
-      cardScale, cardFontFamily, cardBrandIcons, requiresExpiry, showBrand
+      cardScale, cardFontFamily, cardBrandIcons, requiresExpiry, showBrand,placeholders,isHorizontal
     } = this.props;
 
     return (
@@ -161,9 +161,12 @@ export default class CreditCardInput extends Component {
           expiry={expiry}
           cvc={cvc}
           requiresExpiry={requiresExpiry} 
-          showBrand= {showBrand}/>
+          showBrand= {showBrand}
+          placeholder= {placeholders}
+          />
+          
         <ScrollView ref="Form"
-          horizontal
+          horizontal={isHorizontal}
           keyboardShouldPersistTaps="always"
           scrollEnabled={allowScroll}
           showsHorizontalScrollIndicator={false}

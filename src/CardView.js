@@ -21,8 +21,8 @@ const s = StyleSheet.create({
     position: "absolute",
     top: 15,
     right: 15,
-    width: 60,
-    height: 40,
+    width: 50,
+    height: 33,
     resizeMode: "contain",
   },
   baseText: {
@@ -37,13 +37,13 @@ const s = StyleSheet.create({
     color: "rgba(255, 255, 255, 1)",
   },
   number: {
-    fontSize: 15,
+    fontSize: 20,
     position: "absolute",
-    bottom: 15,
-    left: 20,
+    bottom: 70,
+    left: 35,
   },
   name: {
-    fontSize: 16,
+    fontSize: 14,
     position: "absolute",
     bottom: 20,
     left: 25,
@@ -56,7 +56,7 @@ const s = StyleSheet.create({
     left: 218,
   },
   expiry: {
-    fontSize: 16,
+    fontSize: 14,
     position: "absolute",
     bottom: 20,
     left: 220,
@@ -100,7 +100,7 @@ export default class CardView extends Component {
     name: "",
     placeholder: {
       number: "•••• •••• •••• ••••",
-      name: "FULL NAME",
+      name: "FULL NAMEX",
       expiry: "••/••",
       cvc: "•••",
     },
